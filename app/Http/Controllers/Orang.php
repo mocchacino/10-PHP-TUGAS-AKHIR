@@ -24,10 +24,10 @@ class Orang extends Controller
 
     public function store(Request $request){
         $this->validate($request,[
-            'file' => 'required|max:2048'
+            'foto' => 'required|max:2048'
         ]);
         //menyimpan data file yang diupload ke var $file
-        $file = $request->file('file');
+        $file = $request->file('foto');
         $nama_file = time()."_".$file->getClientOriginalName();
         //
         $tujuan_upload = 'data_file';
@@ -35,7 +35,7 @@ class Orang extends Controller
             $data = tbl_biodata::create([
                 'nama' => $request->nama,
                 'no_hp' => $request->no_hp,
-                'alamat' => $request->harga,
+                'alamat' => $request->alamat,
                 'hobi' => $request->hobi,
                 'foto' => $nama_file
             ]);
@@ -43,12 +43,14 @@ class Orang extends Controller
             $res['values'] = $data;
             return response($res);
         }
+        $res['message'] = "Try!";
+        return response($res);
     }
 
     public function update(Request $request){
-        if(!empty($request->file)){
+        if(!empty($request->foto)){
             //menyimpan data file yang diupload ke var $file
-            $file = $request->file('file');
+            $file = $request->file('foto');
             $nama_file = time()."_".$file->getClientOriginalName();
             //
             $tujuan_upload = 'data_file';
@@ -59,7 +61,7 @@ class Orang extends Controller
                 $ket = DB::table('tbl_biodata')->where('id',$request->id)->update([
                     'nama' => $request->nama,
                     'no_hp' => $request->no_hp,
-                    'alamat' => $request->harga,
+                    'alamat' => $request->alamat,
                     'hobi' => $request->hobi,
                     'foto' => $nama_file
                 ]);
@@ -74,7 +76,7 @@ class Orang extends Controller
                 $ket = DB::table('tbl_biodata')->where('id',$request->id)->update([
                     'nama' => $request->nama,
                     'no_hp' => $request->no_hp,
-                    'alamat' => $request->harga,
+                    'alamat' => $request->alamat,
                     'hobi' => $request->hobi
                 ]);
             $res['message'] = "Success!";
@@ -100,7 +102,7 @@ class Orang extends Controller
     }
 
     public function getDetail($id){
-        $data = DB::table('tbl_biodata')->where('id',$request->id)->get();
+        $data = DB::table('tbl_biodata')->where('id',$id)->get();
         if(count($data) > 0){
             $res['message'] = "Success!";
             $res['value'] = $data;

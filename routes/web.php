@@ -21,7 +21,7 @@ use App\Http\Controllers\Orang;
 
 Route::get('/getData', [Orang::class, 'getData']);
 // Route::get('/getData','Orang@getData' );
-Route::post('/pushData', [Orang::class, 'store']);
-Route::post('/setData', [Orang::class, 'update']);
-Route::get('/delete{id}', [Orang::class, 'hapus']);
-Route::get('/getDetail{id}', [Orang::class, 'getDetail']);
+// Route::post('/pushData', [Orang::class, 'store']);
+// Route::post('/setData', [Orang::class, 'update']);
+// Route::get('/delete{id}', [Orang::class, 'hapus']);
+// Route::get('/getDetail{id}', [Orang::class, 'getDetail']);
